@@ -113,13 +113,6 @@ function copyHeaders(originalResponse, response): void {
 
     keys.forEach((key) => {
       let value = originalResponse.headers[key];
-
-      if (key === 'set-cookie') {
-        // remove cookie domain
-        value = Array.isArray(value) ? value : [value];
-        value = value.map((x) => x.replace(/Domain=[^;]+?/i, ''));
-      }
-
       response.setHeader(key, value);
     });
   } else {
